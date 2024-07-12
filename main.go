@@ -57,6 +57,6 @@ func main() {
 		json.NewEncoder(w).Encode([]string{"C#", "Java", "Ruby", "Python", "JavaScript", "Go"})
 	})
 
-	fmt.Printf("listening at http://localhost:%v/languages\n", port)
+	fmt.Printf("listening at http://localhost:%v\n", port)
 	http.ListenAndServe(":"+strconv.Itoa(port), nil)
 }
