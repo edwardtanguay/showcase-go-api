@@ -40,7 +40,8 @@ func main() {
 </head>
 <body>
 	<h1>Showcase Go API</h1>	
-	<p>This is an API written in Go.</p>
+	<p>This API is written in Go.</p>
+	<p>It is being served on Debian with Nginx and PM2.</p>
 	<ul>
 		<li><a href="/languages">/languages</a> - a JSON array of computer languages</li>
 	</ul>
