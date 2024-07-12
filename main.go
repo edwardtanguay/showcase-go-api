@@ -5,9 +5,13 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"os"
 )
 
 func main() {
+
+	test := os.Getenv("TEST")
+	fmt.Printf("Test is: [%v]\n", test)
 
 	port := 7788
 
