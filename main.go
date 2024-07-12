@@ -42,6 +42,7 @@ func main() {
 	<h1>Showcase Go API</h1>	
 	<p>This API is written in Go.</p>
 	<p>It is being served on Debian with Nginx and PM2.</p>
+	<p>Current available routes:</p>
 	<ul>
 		<li><a href="/languages">/languages</a> - a JSON array of computer languages</li>
 	</ul>
