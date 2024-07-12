@@ -1,5 +1,5 @@
 package main
 
 func getLanguages() []string {
-	return []string{"C#", "Java", "Ruby", "Python", "JavaScript", "Go", "Rust"}
+	return []string{"C#", "Java", "Ruby", "Python", "JavaScript", "Go", "Rust", "TypeScript"}
 }
