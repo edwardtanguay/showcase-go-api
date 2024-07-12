@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "go run main.go",
+    "start": "go run main.go tools.go",
     "setup": "pm2 start --name showcase-go-api npm -- start && pm2 save",
     "deploy": "git pull --no-rebase && pm2 restart showcase-go-api --update-env --time && pm2 save"
   },
