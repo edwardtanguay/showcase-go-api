@@ -5,13 +5,9 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"os"
 )
 
 func main() {
-
-	test := os.Getenv("TEST")
-	fmt.Printf("Test is: [%v]\n", test)
 
 	port := 7788
 
@@ -60,7 +56,7 @@ func main() {
 		w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode([]string{"C#", "Java", "Ruby", "Python", "JavaScript", "Go"})
+		json.NewEncoder(w).Encode(getLanguages())
 	})
 
 	fmt.Printf("listening at http://localhost:%v\n", port)
