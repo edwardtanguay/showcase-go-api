@@ -17,6 +17,11 @@ import (
 	"github.com/joho/godotenv"
 )
 
+type Skill struct {
+	IDCode string
+	Title  string
+}
+
 func testEnvironmentVariable() {
 	err := godotenv.Load()
 	if err != nil {
@@ -31,11 +36,10 @@ func getLanguages() []string {
 	return []string{"C#", "Java", "Ruby", "Python", "JavaScript", "Go", "Rust", "TypeScript"}
 }
 
-func getTodosWithMongo() {
+func getSkillsFromMongo() []Skill {
 	err := godotenv.Load()
 	if err != nil {
 		fmt.Println("Error loading .env file")
-		return
 	}
 	mongo_conn := os.Getenv("MONGO_CONNECTION")
 	mongo_database := os.Getenv("MONGO_DATABASE")
@@ -70,15 +74,26 @@ func getTodosWithMongo() {
 		log.Fatal(err)
 	}
 
-	for _, result := range results {
-		fmt.Printf("Found document: %v\n", result)
-	}
+	// for _, result := range results {
+	// 	fmt.Printf("Found document: %v\n", result)
+	// }
 
 	err = client.Disconnect(context.TODO())
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Println("Connection to MongoDB closed.")
+
+	var skills []Skill
+	for _, result := range results {
+		skill := Skill{
+			IDCode: result["idCode"].(string),
+			Title:  result["title"].(string),
+		}
+		skills = append(skills, skill)
+	}
+
+	return skills
 
 }
 
