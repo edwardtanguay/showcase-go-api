@@ -36,7 +36,8 @@ func getLanguages() []string {
 	return []string{"C#", "Java", "Ruby", "Python", "JavaScript", "Go", "Rust", "TypeScript"}
 }
 
-func getSkillsFromMongo() []Skill {
+// func getSkillsFromMongo() []Skill {
+func getSkillsFromMongo() {
 	err := godotenv.Load()
 	if err != nil {
 		fmt.Println("Error loading .env file")
@@ -84,16 +85,18 @@ func getSkillsFromMongo() []Skill {
 	}
 	fmt.Println("Connection to MongoDB closed.")
 
-	var skills []Skill
+	// var skills []Skill
 	for _, result := range results {
-		skill := Skill{
-			IDCode: result["idCode"].(string),
-			Title:  result["title"].(string),
-		}
-		skills = append(skills, skill)
+		// skill := Skill{
+		// 	IDCode: result["idCode"].(string),
+		// 	Title:  result["title"].(string),
+		// }
+		// skills = append(skills, skill)
+		fmt.Printf("Skill %v", result)
 	}
+	// fmt.Printf("there are %v skills", len(skills))
 
-	return skills
+	// return skills
 
 }
 

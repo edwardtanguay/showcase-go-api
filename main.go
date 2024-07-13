@@ -59,8 +59,8 @@ func main() {
 		json.NewEncoder(w).Encode(getLanguages())
 
 		// getHowtosWithSqlite()
-		skills := getSkillsFromMongo()
-		println(skills)
+		getSkillsFromMongo()
+		// println(skills)
 		// testEnvironmentVariable()
 	})
 
