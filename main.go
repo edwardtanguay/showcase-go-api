@@ -45,7 +45,7 @@ func main() {
 	<p>Current available routes:</p>
 	<ul>
 		<li><a href="/languages">/languages</a> - a JSON array of computer languages, via code</li>
-		<li><a href="/languages">/skills</a> - a JSON array of programming skills, via MongoDB Atlas</li>
+		<li><a href="/skills">/skills</a> - a JSON array of programming skills, via MongoDB Atlas</li>
 	</ul>
 </body>
 </html>
