@@ -44,7 +44,8 @@ func main() {
 	<p>It is being served on Debian with Nginx and PM2.</p>
 	<p>Current available routes:</p>
 	<ul>
-		<li><a href="/languages">/languages</a> - a JSON array of computer languages</li>
+		<li><a href="/languages">/languages</a> - a JSON array of computer languages, via code</li>
+		<li><a href="/languages">/skills</a> - a JSON array of programming skills, via MongoDB Atlas</li>
 	</ul>
 </body>
 </html>

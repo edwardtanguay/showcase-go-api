@@ -17,11 +17,6 @@ import (
 	"github.com/joho/godotenv"
 )
 
-type Skill struct {
-	IDCode string
-	Name  string
-}
-
 func testEnvironmentVariable() {
 	err := godotenv.Load()
 	if err != nil {
@@ -36,8 +31,12 @@ func getLanguages() []string {
 	return []string{"C#", "Java", "Ruby", "Python", "JavaScript", "Go", "Rust", "TypeScript"}
 }
 
+type Skill struct {
+	IDCode string
+	Name  string
+}
+
 func getSkillsFromMongo() []Skill {
-	// func getSkillsFromMongo() {
 	err := godotenv.Load()
 	if err != nil {
 		fmt.Println("Error loading .env file")
@@ -75,10 +74,6 @@ func getSkillsFromMongo() []Skill {
 		log.Fatal(err)
 	}
 
-	// for _, result := range results {
-	// 	fmt.Printf("Found document: %v\n", result)
-	// }
-
 	err = client.Disconnect(context.TODO())
 	if err != nil {
 		log.Fatal(err)
@@ -99,7 +94,6 @@ func getSkillsFromMongo() []Skill {
 			Name:  name,
 		}
 		skills = append(skills, skill)
-		// fmt.Printf("ID-Code = %v\n", skill.IDCode)
 	}
 
 	return skills
