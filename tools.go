@@ -3,15 +3,70 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"time"
 
-	_ "github.com/mattn/go-sqlite3"
+	"context"
+	"log"
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func getLanguages() []string {
 	return []string{"C#", "Java", "Ruby", "Python", "JavaScript", "Go", "Rust", "TypeScript"}
 }
 
-func getHowtos() {
+func getTodosWithMongo() {
+	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+
+	// Connect to MongoDB
+	client, err := mongo.Connect(context.TODO(), clientOptions)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Check the connection
+	err = client.Ping(context.TODO(), nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Connected to MongoDB!")
+
+	// Specify the database and collection
+	collection := client.Database("book-app-234").Collection("books")
+
+	// Define a filter to match documents
+	filter := bson.D{}
+
+	// Find multiple documents
+	var results []bson.M
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+	cursor, err := collection.Find(ctx, filter)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if err = cursor.All(ctx, &results); err != nil {
+		log.Fatal(err)
+	}
+
+	// Print the results
+	for _, result := range results {
+		fmt.Printf("Found document: %v\n", result)
+	}
+
+	// Close the connection once done
+	err = client.Disconnect(context.TODO())
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("Connection to MongoDB closed.")
+
+}
+
+func getHowtosWithSqlite() {
 
 	// Open the database
 	db, err := sql.Open("sqlite3", "./data/main.sqlite")

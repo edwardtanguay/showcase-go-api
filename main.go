@@ -57,6 +57,9 @@ func main() {
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(getLanguages())
+
+		// getHowtosWithSqlite()
+		getTodosWithMongo()
 	})
 
 	fmt.Printf("listening at http://localhost:%v\n", port)
