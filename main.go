@@ -57,11 +57,14 @@ func main() {
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(getLanguages())
+	})
 
-		// getHowtosWithSqlite()
-		getSkillsFromMongo()
-		// println(skills)
-		// testEnvironmentVariable()
+	http.HandleFunc("/skills", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(getSkillsFromMongo())
 	})
 
 	fmt.Printf("listening at http://localhost:%v\n", port)
