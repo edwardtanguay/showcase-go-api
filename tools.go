@@ -18,7 +18,6 @@ import (
 )
 
 func testEnvironmentVariable() {
-	// Load the .env file
 	err := godotenv.Load()
 	if err != nil {
 		fmt.Println("Error loading .env file")
@@ -33,7 +32,14 @@ func getLanguages() []string {
 }
 
 func getTodosWithMongo() {
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Println("Error loading .env file")
+		return
+	}
+	mongoConnectionUrl := os.Getenv("MONGO_CONNECTION_URL")
+
+	clientOptions := options.Client().ApplyURI(mongoConnectionUrl)
 
 	// Connect to MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)
