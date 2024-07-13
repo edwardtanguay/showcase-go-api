@@ -13,6 +13,10 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+func testEnvironmentVariable() {
+	println("func works")
+}
+
 func getLanguages() []string {
 	return []string{"C#", "Java", "Ruby", "Python", "JavaScript", "Go", "Rust", "TypeScript"}
 }

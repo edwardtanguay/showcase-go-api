@@ -59,7 +59,8 @@ func main() {
 		json.NewEncoder(w).Encode(getLanguages())
 
 		// getHowtosWithSqlite()
-		getTodosWithMongo()
+		// getTodosWithMongo()
+		testEnvironmentVariable()
 	})
 
 	fmt.Printf("listening at http://localhost:%v\n", port)
