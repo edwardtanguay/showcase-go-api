@@ -37,17 +37,17 @@ func getTodosWithMongo() {
 		fmt.Println("Error loading .env file")
 		return
 	}
-	mongoConnectionUrl := os.Getenv("MONGO_CONNECTION_URL")
+	mongo_conn := os.Getenv("MONGO_CONNECTION")
+	mongo_database := os.Getenv("MONGO_DATABASE")
+	mongo_collection := os.Getenv("MONGO_COLLECTION")
 
-	clientOptions := options.Client().ApplyURI(mongoConnectionUrl)
+	clientOptions := options.Client().ApplyURI(mongo_conn)
 
-	// Connect to MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// Check the connection
 	err = client.Ping(context.TODO(), nil)
 	if err != nil {
 		log.Fatal(err)
@@ -55,13 +55,10 @@ func getTodosWithMongo() {
 
 	fmt.Println("Connected to MongoDB!")
 
-	// Specify the database and collection
-	collection := client.Database("book-app-234").Collection("books")
+	collection := client.Database(mongo_database).Collection(mongo_collection)
 
-	// Define a filter to match documents
 	filter := bson.D{}
 
-	// Find multiple documents
 	var results []bson.M
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
@@ -73,12 +70,10 @@ func getTodosWithMongo() {
 		log.Fatal(err)
 	}
 
-	// Print the results
 	for _, result := range results {
 		fmt.Printf("Found document: %v\n", result)
 	}
 
-	// Close the connection once done
 	err = client.Disconnect(context.TODO())
 	if err != nil {
 		log.Fatal(err)
