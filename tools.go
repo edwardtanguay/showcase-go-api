@@ -8,13 +8,24 @@ import (
 	"context"
 	"log"
 
+	"os"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+
+	"github.com/joho/godotenv"
 )
 
 func testEnvironmentVariable() {
-	println("func works")
+	// Load the .env file
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Println("Error loading .env file")
+		return
+	}
+	test := os.Getenv("TEST")
+	fmt.Printf("Test = [%s]", test)
 }
 
 func getLanguages() []string {
